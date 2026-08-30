@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Campus Navigation AI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div id="welcome">
+
+<h1>WELCOME</h1>
+
+</div>
+
+<div id="dashboard">
+
+<h2>Campus Navigation AI</h2>
+
+<button onclick="showClosestGate()">
+Closest Gate Finder
+</button>
+
+<button onclick="showShortestPath()">
+Shortest Path Finder
+</button>
+
+<button onclick="showAIChat()">
+AI Campus Assistant
+</button>
+
+<div id="content"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

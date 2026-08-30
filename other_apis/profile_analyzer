@@ -1,0 +1,82 @@
+import os
+from google import genai
+
+# Step 1: Replace "YOUR_GEMINI_API_KEY" with your acdctual key from Google AI Studio
+API_KEY = "YOUR_GEMINI_API_KEY"
+
+def analyze_linkedin_profile(profile_id: str, target_role: str, profile_text: str) -> str:
+    """
+    Connects to the Gemini API and analyzes the LinkedIn profile details
+    against the candidate's desired target job area.
+    """
+    # Step 2: Initialize the Gemini client using your API Key
+    client = genai.Client(api_key=API_KEY)
+
+    # Step 3: Construct a prompt that instructs the AI how to evaluate the profile
+    prompt = f"""
+    You are an expert HR recruiter and career coach.
+    Analyze the following LinkedIn profile for a candidate target role in '{target_role}'.
+
+    Candidate Details:
+    - LinkedIn Handle/ID: {profile_id}
+    - Profile Overview (Headline & About):
+    {profile_text}
+
+    Provide a clear report in the following format:
+    1. **Job Readiness Score**: Give a percentage (0% to 100%) with a brief explanation.
+    2. **Key Strengths**: Highlight what is already impressive about the profile.
+    3. **Missing Keywords & Gaps**: Point out missing skills or weak points for '{target_role}'.
+    4. **3 Eye-Catching Headline Suggestions**: Provide catchy, recruiter-optimized headlines.
+    5. **Actionable Enhancements**: Bullet points on how to improve the 'About' and 'Experience' sections.
+    """
+
+    # Step 4: Call the Gemini 2.5 Flash model to generate the feedback report
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt
+    )
+
+    # Step 5: Return the AI-generated text response
+    return response.text
+
+
+def main():
+    """
+    Main function to run the terminal user interface in VS Code.
+    """
+    print("=" * 55)
+    print("      LINKEDIN PROFILE AI JOB READINESS ANALYZER       ")
+    print("=" * 55 + "\n")
+
+    # Collect input values from the user in the terminal
+    profile_id = input("1. Enter LinkedIn Profile ID or URL: ").strip()
+    target_role = input("2. Enter Target Job Role (e.g., Python Developer): ").strip()
+    
+    print("\n3. Paste your LinkedIn Headline + About section text:")
+    profile_text = input("> ").strip()
+
+    # Simple input validation
+    if not profile_id or not target_role or not profile_text:
+        print("\n[!] All fields are required. Please run the script again.")
+        return
+
+    print("\nConnecting to AI agent... Analyzing profile...\n")
+
+    try:
+        # Call the analysis function and store the resulting text
+        report = analyze_linkedin_profile(profile_id, target_role, profile_text)
+
+        # Output the report cleanly to the terminal screen
+        print("================ ANALYSIS REPORT ================\n")
+        print(report)
+        print("\n=================================================")
+
+    except Exception as e:
+        print(f"\n[Error]: Could not analyze profile.")
+        print(f"Details: {e}")
+        print("Please verify your API key is correctly set in main.py.")
+
+
+# Ensures the main() function runs when you execute the script directly
+if __name__ == "__main__":
+    main()
