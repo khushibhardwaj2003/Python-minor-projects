@@ -2,77 +2,105 @@
 <html>
 <head>
     <title>Interview Expert</title>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<div class="container">
+<!-- PAGE 1 -->
 
-    <h1>🎯 Hi I'm your Interview Expert</h1>
+<div id="page1" class="page">
 
-    <div class="input-section">
+    <div class="banner">
+        <h1>Hi I'am your<br>Interview Expert</h1>
+    </div>
+
+    <button onclick="showPage2()" class="main-btn">
+        Click Here To Chat
+    </button>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div id="page2" class="page" style="display:none;">
+
+    <div class="banner">
+        <h1>Interview Expert</h1>
+    </div>
+
+    <div class="form-box">
 
         <input
             type="text"
             id="subject"
-            placeholder="Enter your Topic">
+            placeholder="Enter Topic">
 
         <input
             type="number"
             id="num_questions"
-            placeholder="Number of Questions"
-            min="1"
-            max="20">
+            placeholder="Number of Questions">
 
-        <button onclick="generateQuestions()">
+        <button onclick="generateQuestions()" class="main-btn">
             Generate Questions
         </button>
 
     </div>
 
-    <div class="chat-box">
+</div>
 
-        <div class="bot-message">
-            Enter a topic and I'll create interview questions for you.
-        </div>
+<!-- PAGE 3 -->
 
-        <div id="output"></div>
+<div id="page3" class="page" style="display:none;">
 
+    <div class="question-title">
+        Here are the questions
     </div>
+
+    <div id="output"></div>
 
 </div>
 
 <script>
 
-async function generateQuestions() {
+function showPage2(){
+
+    document.getElementById("page1").style.display="none";
+    document.getElementById("page2").style.display="block";
+
+}
+
+async function generateQuestions(){
 
     let subject =
-        document.getElementById("subject").value;
+    document.getElementById("subject").value;
 
     let num_questions =
-        document.getElementById("num_questions").value;
+    document.getElementById("num_questions").value;
 
-    let response = await fetch("/generate", {
+    let response = await fetch("/generate",{
 
-        method: "POST",
+        method:"POST",
 
-        headers: {
-            "Content-Type": "application/json"
+        headers:{
+            "Content-Type":"application/json"
         },
 
-        body: JSON.stringify({
-            subject: subject,
-            num_questions: num_questions
+        body:JSON.stringify({
+            subject:subject,
+            num_questions:num_questions
         })
 
     });
 
     let data = await response.json();
 
+    document.getElementById("page2").style.display="none";
+    document.getElementById("page3").style.display="block";
+
     document.getElementById("output").innerHTML =
-        `<div class="bot-message">${data.response.replace(/\n/g,'<br>')}</div>`;
+    data.response.replace(/\n/g,"<br>");
+
 }
 
 </script>
