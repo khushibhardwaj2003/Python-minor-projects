@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 from ollama import Client
+import os
 
 app = Flask(__name__)
 
-client = Client(host="d75e1c954fda4258afa83154520f91d3.GUVWnfun0tztuJ4r0_ojXwwP")
+client = Client(
+    host=os.getenv("3d945166dc8c464c8b10d88ef94f5355")
+)
 
 @app.route("/")
 def home():
@@ -12,25 +15,31 @@ def home():
 @app.route("/generate", methods=["POST"])
 def generate():
 
-    data = request.json
+    data = request.get_json()
 
     subject = data["subject"]
     num_questions = data["num_questions"]
 
     prompt = f"""
-    Generate EXACTLY {num_questions} interview questions
-    with answers on {subject}.
+Generate EXACTLY {num_questions} interview questions
+with answers on {subject}.
 
-    Format:
+Format:
 
-    Q.1 Question
-    Ans. Answer
-    """
+Q.1 Question
+Ans. Answer
+
+Q.2 Question
+Ans. Answer
+"""
 
     response = client.chat(
-        model="phi3:mini",   # or llama3.2
+        model="llama3.2",
         messages=[
-            {"role": "user", "content": prompt}
+            {
+                "role": "user",
+                "content": prompt
+            }
         ]
     )
 
