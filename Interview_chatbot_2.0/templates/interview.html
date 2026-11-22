@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview | Sakshatkar AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/interview.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="interview-page">
+
+        <!-- HEADER -->
+
+        <header class="interview-header">
+
+            <div class="logo">
+                SAKSHATKAR
+            </div>
+
+            <div class="header-status">
+                <span class="status-dot"></span>
+                AI INTERVIEWER
+            </div>
+
+        </header>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-container">
+
+            <div class="progress-step active">
+                <span>1</span>
+                <p>Configure</p>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step">
+                <span>2</span>
+                <p>Confirm</p>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step">
+                <span>3</span>
+                <p>Interview</p>
+            </div>
+
+        </div>
+
+
+        <!-- MAIN -->
+
+        <main class="configuration-container">
+
+
+            <!-- =========================
+                 STEP 1
+            ========================== -->
+
+            <section id="configurationScreen"
+                     class="configuration-screen active">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        STEP 01
+                    </p>
+
+                    <h1>
+                        Configure your interview
+                    </h1>
+
+                    <p>
+                        Choose how you want your
+                        interview to be conducted.
+                    </p>
+
+                </div>
+
+
+                <!-- INTERVIEW TYPE -->
+
+                <div class="form-section">
+
+                    <h2>
+                        1. Interview Type
+                    </h2>
+
+                    <div class="choice-grid">
+
+
+                        <button class="choice-card interview-type active"
+                                data-type="technical">
+
+                            <span class="choice-icon">
+                                💻
+                            </span>
+
+                            <span class="choice-title">
+                                Technical
+                            </span>
+
+                            <span class="choice-description">
+                                Test your technical knowledge,
+                                concepts and problem solving.
+                            </span>
+
+                        </button>
+
+
+                        <button class="choice-card interview-type"
+                                data-type="hr">
+
+                            <span class="choice-icon">
+                                👤
+                            </span>
+
+                            <span class="choice-title">
+                                HR / Behavioral
+                            </span>
+
+                            <span class="choice-description">
+                                Practice communication,
+                                behavioral and HR questions.
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOPIC -->
+
+                <div class="form-section">
+
+                    <h2>
+                        2. Choose Topic
+                    </h2>
+
+                    <select id="topic"
+                            class="topic-select">
+
+                        <option value="">
+                            Select a topic
+                        </option>
+
+                        {% for category, topic_list in topics.items() %}
+
+                            {% for topic in topic_list %}
+
+                                <option
+                                    value="{{ topic }}"
+                                    data-category="{{ category }}">
+
+                                    {{ topic }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- DIFFICULTY -->
+
+                <div class="form-section">
+
+                    <h2>
+                        3. Difficulty
+                    </h2>
+
+                    <div class="choice-grid three-columns">
+
+                        <button class="choice-card difficulty-card"
+                                data-difficulty="Easy">
+
+                            <span class="choice-title">
+                                Easy
+                            </span>
+
+                            <span class="choice-description">
+                                Beginner friendly
+                            </span>
+
+                        </button>
+
+
+                        <button class="choice-card difficulty-card active"
+                                data-difficulty="Medium">
+
+                            <span class="choice-title">
+                                Medium
+                            </span>
+
+                            <span class="choice-description">
+                                Interview level
+                            </span>
+
+                        </button>
+
+
+                        <button class="choice-card difficulty-card"
+                                data-difficulty="Hard">
+
+                            <span class="choice-title">
+                                Hard
+                            </span>
+
+                            <span class="choice-description">
+                                Advanced challenge
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODE -->
+
+                <div class="form-section">
+
+                    <h2>
+                        4. Interview Mode
+                    </h2>
+
+                    <div class="choice-grid">
+
+                        <button class="choice-card mode-card active"
+                                data-mode="mcq">
+
+                            <span class="choice-icon">
+                                ☑
+                            </span>
+
+                            <span class="choice-title">
+                                MCQ Based
+                            </span>
+
+                            <span class="choice-description">
+                                Answer multiple-choice
+                                interview questions.
+                            </span>
+
+                        </button>
+
+
+                        <button class="choice-card mode-card"
+                                data-mode="explanation">
+
+                            <span class="choice-icon">
+                                💬
+                            </span>
+
+                            <span class="choice-title">
+                                Explanation Based
+                            </span>
+
+                            <span class="choice-description">
+                                Give detailed answers and
+                                receive explanations.
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NUMBER OF QUESTIONS -->
+
+                <div class="form-section">
+
+                    <h2>
+                        5. Number of Questions
+                    </h2>
+
+                    <select id="questionCount"
+                            class="topic-select">
+
+                        <option value="3">
+                            3 Questions
+                        </option>
+
+                        <option value="5"
+                                selected>
+                            5 Questions
+                        </option>
+
+                        <option value="10">
+                            10 Questions
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="button-container">
+
+                    <button id="continueButton"
+                            class="primary-button">
+
+                        Continue →
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 STEP 2
+            ========================== -->
+
+            <section id="confirmScreen"
+                     class="confirm-screen">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        STEP 02
+                    </p>
+
+                    <h1>
+                        Review your interview
+                    </h1>
+
+                    <p>
+                        Make sure everything looks right
+                        before starting.
+                    </p>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-row">
+
+                        <span>
+                            Interview Type
+                        </span>
+
+                        <strong id="summaryType">
+                            Technical
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Topic
+                        </span>
+
+                        <strong id="summaryTopic">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Difficulty
+                        </span>
+
+                        <strong id="summaryDifficulty">
+                            Medium
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Mode
+                        </span>
+
+                        <strong id="summaryMode">
+                            MCQ Based
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Questions
+                        </span>
+
+                        <strong id="summaryQuestions">
+                            5
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-container">
+
+                    <button id="backButton"
+                            class="secondary-button">
+
+                        ← Back
+
+                    </button>
+
+
+                    <button id="startInterviewButton"
+                            class="primary-button">
+
+                        Start Interview →
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 STEP 3
+            ========================== -->
+
+            <section id="interviewScreen"
+                     class="interview-screen">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        STEP 03
+                    </p>
+
+                    <h1>
+                        AI Interviewer
+                    </h1>
+
+                    <p>
+                        Your interview will appear here.
+                    </p>
+
+                </div>
+<div class="interviewer-placeholder">
+
+    <div class="avatar-placeholder">
+        AI
+    </div>
+
+    <h2>
+        AI Interviewer
+    </h2>
+
+    <div id="questionLoader">
+        Preparing your first question...
+    </div>
+
+    <div id="questionText"
+         class="question-text">
+    </div>
+
+</div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/interview.js') }}">
+    </script>
+
+</body>
+
+</html>
