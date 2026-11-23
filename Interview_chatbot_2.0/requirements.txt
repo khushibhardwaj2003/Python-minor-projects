@@ -2,3 +2,4 @@ Flask
 ollama
 python-dotenv
 pypdf
+gunicorn
