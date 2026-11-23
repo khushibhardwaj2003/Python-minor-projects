@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sakshatkar AI Interviewer
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-brand">
+
+        <div class="brand-name">
+            SAKSHATKAR
+        </div>
+
+        <div class="brand-status">
+            <span class="status-dot"></span>
+            AI INTERVIEWER
+        </div>
+
+    </div>
+
+
+    <nav class="navigation">
+
+        <button
+            id="nav-welcome"
+            class="nav-item active"
+            onclick="showScreen('welcome')"
+        >
+            <span class="nav-icon">⌂</span>
+            <span>Home</span>
+        </button>
+
+
+        <button
+            id="nav-modes"
+            class="nav-item"
+            onclick="showScreen('modes')"
+        >
+            <span class="nav-icon">◆</span>
+            <span>Interview</span>
+        </button>
+
+
+        <button
+            id="nav-resume"
+            class="nav-item"
+            onclick="openResume()"
+        >
+            <span class="nav-icon">▣</span>
+            <span>CV Interview</span>
+        </button>
+
+
+        <button
+            id="nav-ats"
+            class="nav-item"
+            onclick="showScreen('ats')"
+        >
+            <span class="nav-icon">✓</span>
+            <span>ATS Checker</span>
+        </button>
+
+
+        <button
+            id="nav-gd"
+            class="nav-item"
+            onclick="openGD()"
+        >
+            <span class="nav-icon">◎</span>
+            <span>Group Discussion</span>
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-footer">
+
+        <div class="footer-line"></div>
+
+        <p>
+            Practice. Analyse. Improve.
+        </p>
+
+        <span>
+            SAKSHATKAR AI
+        </span>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
+<section
+    id="welcome"
+    class="screen active-screen"
+>
+
+    <div class="welcome-screen">
+
+        <div class="welcome-glow"></div>
+
+
+        <div class="welcome-content">
+
+
+            <div class="welcome-status">
+
+                <span class="status-dot"></span>
+
+                YOUR OWN AI INTERVIEW EXPERT
+
+            </div>
+
+
+            <div class="welcome-badge">
+                AI POWERED INTERVIEW PLATFORM
+            </div>
+
+
+            <h1>
+
+                Welcome to
+                <span>
+                    SAKSHATKAR
+                </span>
+
+            </h1>
+
+
+            <p class="welcome-description">
+
+                Practice interviews, improve your answers,
+                analyse your resume and experience realistic
+                group discussions with AI.
+
+            </p>
+
+
+            <div class="welcome-features">
+
+                <div>
+                    <span>01</span>
+                    AI Interviews
+                </div>
+
+                <div>
+                    <span>02</span>
+                    CV Analysis
+                </div>
+
+                <div>
+                    <span>03</span>
+                    Group Discussion
+                </div>
+
+            </div>
+
+
+            <button
+                id="letsStartButton"
+                class="hero-button"
+            >
+
+                Let's Start
+
+                <span>→</span>
+
+            </button>
+
+
+            <p class="welcome-note">
+                Your AI-powered interview practice companion
+            </p>
+
+        </div>
+
+
+        <div class="welcome-bottom">
+
+            <span>
+                TECHNICAL
+            </span>
+
+            <span>•</span>
+
+            <span>
+                HR
+            </span>
+
+            <span>•</span>
+
+            <span>
+                RESUME
+            </span>
+
+            <span>•</span>
+
+            <span>
+                GD
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MODES
+===================================================== -->
+
+<section
+    id="modes"
+    class="screen"
+>
+
+    <div class="screen-inner">
+
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    01 / CHOOSE YOUR MODE
+                </div>
+
+                <h2>
+                    How would you<br>
+                    like to practice?
+                </h2>
+
+                <p>
+                    Select an interview experience
+                    to begin your preparation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="mode-grid">
+
+
+            <button
+                class="mode-card"
+                onclick="openTechnical()"
+            >
+
+                <div class="mode-number">
+                    01
+                </div>
+
+                <div class="mode-icon">
+                    &lt;/&gt;
+                </div>
+
+                <h3>
+                    Technical Interview
+                </h3>
+
+                <p>
+                    Practice technical questions
+                    across programming, AI, databases,
+                    networking and more.
+                </p>
+
+                <span class="mode-arrow">
+                    Start →
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="mode-card"
+                onclick="openHR()"
+            >
+
+                <div class="mode-number">
+                    02
+                </div>
+
+                <div class="mode-icon">
+                    ◉
+                </div>
+
+                <h3>
+                    HR Interview
+                </h3>
+
+                <p>
+                    Prepare for behavioural,
+                    communication and personality
+                    based interview questions.
+                </p>
+
+                <span class="mode-arrow">
+                    Start →
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="mode-card"
+                onclick="openResume()"
+            >
+
+                <div class="mode-number">
+                    03
+                </div>
+
+                <div class="mode-icon">
+                    CV
+                </div>
+
+                <h3>
+                    Resume Interview
+                </h3>
+
+                <p>
+                    Upload your CV and answer questions
+                    generated specifically from your
+                    experience and projects.
+                </p>
+
+                <span class="mode-arrow">
+                    Start →
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="mode-card"
+                onclick="showScreen('ats')"
+            >
+
+                <div class="mode-number">
+                    04
+                </div>
+
+                <div class="mode-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    ATS Resume Checker
+                </h3>
+
+                <p>
+                    Analyse your resume for ATS
+                    compatibility, keywords, skills
+                    and job readiness.
+                </p>
+
+                <span class="mode-arrow">
+                    Analyse →
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="mode-card mode-card-wide"
+                onclick="openGD()"
+            >
+
+                <div class="mode-number">
+                    05
+                </div>
+
+                <div class="mode-icon">
+                    GD
+                </div>
+
+                <h3>
+                    Group Discussion
+                </h3>
+
+                <p>
+                    Participate in a realistic group
+                    discussion with multiple AI
+                    participants and different viewpoints.
+                </p>
+
+                <span class="mode-arrow">
+                    Join Discussion →
+                </span>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTERVIEW
+===================================================== -->
+
+<section
+    id="interview"
+    class="screen"
+>
+
+    <div class="screen-inner">
+
+        <div class="eyebrow">
+            INTERVIEW
+        </div>
+
+        <h2>
+            Choose your interview mode.
+        </h2>
+
+        <p class="subtitle">
+            Select Technical or HR from the
+            Interview section.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RESUME INTERVIEW
+===================================================== -->
+
+<section
+    id="resume"
+    class="screen"
+>
+
+    <div class="screen-inner">
+
+        <div class="eyebrow">
+            02 / RESUME INTERVIEW
+        </div>
+
+        <h2>
+            Interview based on<br>
+            your CV.
+        </h2>
+
+        <p class="subtitle">
+            Upload your resume and let the AI
+            interviewer ask questions based on
+            your actual projects, skills and experience.
+        </p>
+
+
+        <div class="upload-card">
+
+            <div class="upload-icon">
+                CV
+            </div>
+
+            <h3>
+                Upload your resume
+            </h3>
+
+            <p>
+                PDF format recommended.
+            </p>
+
+
+            <input
+                id="resumeInterviewFile"
+                type="file"
+                accept=".pdf"
+            >
+
+
+            <div
+                id="resumeFileName"
+                class="file-name"
+            >
+                No file selected
+            </div>
+
+
+            <button
+                class="primary-button"
+                onclick="startResumeInterview()"
+            >
+                Start Resume Interview →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ATS
+===================================================== -->
+
+<section
+    id="ats"
+    class="screen"
+>
+
+    <div class="screen-inner">
+
+        <div class="eyebrow">
+            03 / RESUME ANALYSIS
+        </div>
+
+        <h2>
+            Check your resume<br>
+            before applying.
+        </h2>
+
+        <p class="subtitle">
+            Analyse your resume for ATS compatibility,
+            keywords, skills, formatting and job readiness.
+        </p>
+
+
+        <div class="upload-card">
+
+            <div class="upload-icon">
+                ATS
+            </div>
+
+            <h3>
+                Upload your resume
+            </h3>
+
+            <p>
+                Upload your PDF resume for AI analysis.
+            </p>
+
+
+            <input
+                id="atsFile"
+                type="file"
+                accept=".pdf"
+            >
+
+
+            <button
+                class="primary-button"
+                onclick="analyseResume()"
+            >
+                Analyse Resume →
+            </button>
+
+        </div>
+
+
+        <div
+            id="atsResult"
+            class="result-box"
+        ></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     GROUP DISCUSSION
+===================================================== -->
+
+<section
+    id="gd"
+    class="screen"
+>
+
+    <div class="screen-inner">
+
+        <div class="eyebrow">
+            04 / GROUP DISCUSSION
+        </div>
+
+        <h2>
+            Discuss. Challenge.<br>
+            Think differently.
+        </h2>
+
+        <p class="subtitle">
+            Choose a topic and participate in a
+            realistic AI-powered group discussion.
+        </p>
+
+
+        <div class="setup-panel">
+
+            <label>
+                DISCUSSION TOPIC
+            </label>
+
+
+            <select id="gdTopic">
+
+                <option value="">
+                    Select a topic
+                </option>
+
+            </select>
+
+
+            <button
+                class="primary-button"
+                onclick="startGD()"
+            >
+                Start Group Discussion →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FACE API
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"
+></script>
+
+
+<!-- =====================================================
+     MAIN JAVASCRIPT
+===================================================== -->
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+</body>
+
+</html>
